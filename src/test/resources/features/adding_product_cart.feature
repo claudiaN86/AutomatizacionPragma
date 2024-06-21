@@ -8,20 +8,18 @@ Feature: Adding products to your shopping cart
   want to add products
   to display them in the shopping cart
 
-  Background: access the Demoblaze Home page
-    Given that I access the home page
+  Background: Access the Demoblaze's homepage
+    Given I am on the homepage
 
-
-  @CaseOne
+  @CaseOne @AddProduct
   Scenario Outline: Adding a product to the cart with the Add  To Cart button
     When I add a "<product>" to the cart
-    Then the product should be displayed in the cart
+    Then I should see the products in the cart
     Examples:
       | product           |
       | Samsung galaxy s6 |
 
-
-  @CaseTwo
+  @CaseTwo @AddSameProduct
   Scenario Outline: Adding many times the same product to the cart
     When I add several times the same "<product>" to the cart
     Then the product should be displayed many times in the cart
@@ -29,8 +27,7 @@ Feature: Adding products to your shopping cart
       | product           |
       | Samsung galaxy s6 |
 
-
-  @CaseTree
+  @CaseTree @AddMultipleProducts
   Scenario: Adding multiple products to cart
     When I add multiple products to the cart
       | product           |
@@ -38,10 +35,9 @@ Feature: Adding products to your shopping cart
       | Nexus 6           |
       | Sony vaio i5      |
       | Iphone 6 32gb     |
-    Then I should see all the different products in the cart
+    Then I should see the products in the cart
 
-
-  @CaseFour
+  @CaseFour @RemoveCartProducts
   Scenario: Remove products in the cart
     When I add multiple products to the cart
       | product           |
@@ -49,20 +45,19 @@ Feature: Adding products to your shopping cart
       | Nexus 6           |
       | Sony vaio i5      |
       | Iphone 6 32gb     |
-    And I remove the products from the cart
-    Then I should not see the products
+    And I remove the products in the cart
+    Then I should not see the products in the cart
 
-
-  @CaseFive
+  @CaseFive @PriceProduct
   Scenario Outline: The price must be the respective price of the selected product.
     When I add a "<product>" to the cart
-    Then I should see the respective price of the product
+    Then I should see the respective price of the product in the cart
     Examples:
       | product           |
       | Samsung galaxy s6 |
 
 
-  @CaseSix
+  @CaseSix @PriceProducts
   Scenario: The total price of the cart must be the sum of the products.
     When I add multiple products to the cart
       | product           |
@@ -70,6 +65,6 @@ Feature: Adding products to your shopping cart
       | Nexus 6           |
       | Sony vaio i5      |
       | Iphone 6 32gb     |
-    Then I should see the corresponding total price of the products
+    Then I should see the sum of the total price of the products in the cart
 
 

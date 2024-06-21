@@ -1,48 +1,44 @@
 package com.pragma.stepdefinitions;
 
+import com.pragma.userinterfaces.HomePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.serenitybdd.screenplay.actions.Open;
 
 import java.util.List;
 import java.util.Map;
 
+import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+
 public class AddingProductCartStepDefinitions {
 
-    @Given("that I access the home page")
-    public void thatIAccessTheHomePage() {
-
+    @Given("I am on the homepage")
+    public void iAamOnTheHomepage() {
+        theActorInTheSpotlight().wasAbleTo(
+                Open.browserOn().the(HomePage.class)
+        );
     }
     @When("I add a {string} to the cart")
-    public void iAddAToTheCart(String string) {
+    public void iAddAToTheCart(String product) {
 
     }
 
     @When("I add several times the same {string} to the cart")
-    public void iAddSeveralTimesTheSameToTheCart(String string) {
+    public void iAddSeveralTimesTheSameToTheCart(String product) {
 
     }
 
     @When("I add multiple products to the cart")
     public void iAddMultipleProductsToTheCart(List<Map<String, String>> products) {
-   // public void iAddMultipleProductsToTheCart(io.cucumber.datatable.DataTable dataTable) {
-        // Write code here that turns the phrase above into concrete actions
-        // For automatic transformation, change DataTable to one of
-        // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-        // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-        // Double, Byte, Short, Long, BigInteger or BigDecimal.
-        //
-        // For other transformations you can register a DataTableType.
         for (Map<String, String> product : products) {
             String productName = product.get("product");
-            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++"+productName);
+
         }
-
-
     }
 
-    @When("I remove the products from the cart")
-    public void iRemoveTheProductsFromTheCart() {
+    @When("I remove the products in the cart")
+    public void iRemoveTheProductsInTheCart() {
 
     }
 
@@ -51,26 +47,21 @@ public class AddingProductCartStepDefinitions {
 
     }
 
-    @Then("I should see all the different products in the cart")
-    public void iShouldSeeAllTheDifferentProductsInTheCart() {
+    @Then("I should see the products in the cart")
+    public void iShouldSeeTheProductsInTheCart() {
+
+    }
+    @Then("I should not see the products in the cart")
+    public void iShouldNotSeeTheProductsInTheCart() {
+
+    }
+    @Then("I should see the respective price of the product in the cart")
+    public void iShouldSeeTheRespectivePriceOfTheProductInTheCart() {
 
     }
 
-    @Then("the product should be displayed in the cart")
-    public void theProductShouldBeDisplayedInTheCart() {
-
-    }
-    @Then("I should not see the products")
-    public void iShouldNotSeeTheProducts() {
-
-    }
-    @Then("I should see the respective price of the product")
-    public void iShouldSeeTheRespectivePriceOfTheProduct() {
-
-    }
-
-    @Then("I should see the corresponding total price of the products")
-    public void iShouldSeeTheCorrespondingTotalPriceOfTheProducts() {
+    @Then("I should see the sum of the total price of the products in the cart")
+    public void iShouldSeeTheSumOfTheTotalPriceOfTheProductsInTheCart() {
 
     }
 
