@@ -1,9 +1,12 @@
 package com.pragma.stepdefinitions;
 
+import com.pragma.questions.ValidateNameProducts;
+import com.pragma.tasks.AddOneProductTask;
 import com.pragma.userinterfaces.HomePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.serenitybdd.screenplay.GivenWhenThen;
 import net.serenitybdd.screenplay.actions.Open;
 
 import java.util.List;
@@ -21,6 +24,9 @@ public class AddingProductCartStepDefinitions {
     }
     @When("I add a {string} to the cart")
     public void iAddAToTheCart(String product) {
+        theActorInTheSpotlight().attemptsTo(
+                AddOneProductTask.withData(product)
+        );
 
     }
 
@@ -42,6 +48,14 @@ public class AddingProductCartStepDefinitions {
 
     }
 
+
+    @Then("I should see the {string} in the cart")
+    public void iShouldSeeTheProductInTheCart(String product) {
+    theActorInTheSpotlight().should(
+            GivenWhenThen.seeThat(ValidateNameProducts.verify(product))
+    );
+
+    }
     @Then("the product should be displayed many times in the cart")
     public void theProductShouldBeDisplayedManyTimesInTheCart() {
 
@@ -49,6 +63,7 @@ public class AddingProductCartStepDefinitions {
 
     @Then("I should see the products in the cart")
     public void iShouldSeeTheProductsInTheCart() {
+
 
     }
     @Then("I should not see the products in the cart")
@@ -64,8 +79,6 @@ public class AddingProductCartStepDefinitions {
     public void iShouldSeeTheSumOfTheTotalPriceOfTheProductsInTheCart() {
 
     }
-
-
 
 
 

@@ -3,7 +3,7 @@
 #language: en
 
 @AddingCart
-Feature: Adding products to your shopping cart
+Feature: Add products to cart
   I as a customer
   want to add products
   to display them in the shopping cart
@@ -14,7 +14,7 @@ Feature: Adding products to your shopping cart
   @CaseOne @AddProduct
   Scenario Outline: Adding a product to the cart with the Add  To Cart button
     When I add a "<product>" to the cart
-    Then I should see the products in the cart
+    Then I should see the "<product>" in the cart
     Examples:
       | product           |
       | Samsung galaxy s6 |
