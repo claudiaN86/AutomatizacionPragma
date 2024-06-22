@@ -1,9 +1,11 @@
 package com.pragma.stepdefinitions;
 
+import com.pragma.interactions.DeleteProductAction;
 import com.pragma.questions.ValidateNameProducts;
 import com.pragma.questions.ValidateQuantity;
 import com.pragma.tasks.AddOneProductTask;
 import com.pragma.tasks.AddingMultipleProducts;
+import com.pragma.tasks.DeleteProductTask;
 import com.pragma.userinterfaces.HomePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -49,7 +51,9 @@ public class AddingProductCartStepDefinitions {
 
     @When("I remove the products in the cart")
     public void iRemoveTheProductsInTheCart() {
-
+        theActorInTheSpotlight().attemptsTo(
+                DeleteProductAction.withTheData()
+        );
     }
 
 
@@ -86,7 +90,9 @@ public class AddingProductCartStepDefinitions {
 
     @Then("I should not see the products in the cart")
     public void iShouldNotSeeTheProductsInTheCart() {
-
+        theActorInTheSpotlight().attemptsTo(
+                DeleteProductTask.withData()
+        );
     }
 
     @Then("I should see the respective price of the product in the cart")

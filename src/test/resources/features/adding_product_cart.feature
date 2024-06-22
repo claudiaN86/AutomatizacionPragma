@@ -40,11 +40,11 @@ Feature: Add products to cart
   @CaseFour @RemoveCartProducts
   Scenario: Remove products in the cart
     When I add multiple products to the cart
-      | product           |
-      | Samsung galaxy s6 |
-      | Nexus 6           |
-      | Sony vaio i5      |
-      | Iphone 6 32gb     |
+      | product           | quantity |
+      | Samsung galaxy s6 | 1        |
+      | Nexus 6           | 1        |
+      | Sony vaio i5      | 1        |
+      | Iphone 6 32gb     | 1        |
     And I remove the products in the cart
     Then I should not see the products in the cart
 
