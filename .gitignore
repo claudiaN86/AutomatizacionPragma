@@ -4,4 +4,5 @@ history
 out
 .gradle
 .idea
+.run
 *.iml
