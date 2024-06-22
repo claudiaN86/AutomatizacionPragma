@@ -3,6 +3,7 @@ package com.pragma.stepdefinitions;
 import com.pragma.questions.ValidateNameProducts;
 import com.pragma.questions.ValidateQuantity;
 import com.pragma.tasks.AddOneProductTask;
+import com.pragma.tasks.AddingMultipleProducts;
 import com.pragma.userinterfaces.HomePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -41,10 +42,9 @@ public class AddingProductCartStepDefinitions {
 
     @When("I add multiple products to the cart")
     public void iAddMultipleProductsToTheCart(List<Map<String, String>> products) {
-        for (Map<String, String> product : products) {
-            String productName = product.get("product");
-
-        }
+        theActorInTheSpotlight().attemptsTo(
+                AddingMultipleProducts.withData(products)
+        );
     }
 
     @When("I remove the products in the cart")
@@ -70,7 +70,17 @@ public class AddingProductCartStepDefinitions {
 
     @Then("I should see the products in the cart")
     public void iShouldSeeTheProductsInTheCart() {
+        List<Map<String, String>> products = theActorInTheSpotlight().recall("listTable");
 
+        for (Map<String, String> product : products) {
+            String productName = product.get("product");
+            int quantity = Integer.parseInt(product.get("quantity"));
+
+            theActorInTheSpotlight().should(
+                    GivenWhenThen.seeThat(ValidateQuantity.verify(productName, quantity)),
+                    GivenWhenThen.seeThat(ValidateNameProducts.verify(productName))
+            );
+        }
 
     }
 

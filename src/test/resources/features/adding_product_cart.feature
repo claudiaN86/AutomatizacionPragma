@@ -30,11 +30,11 @@ Feature: Add products to cart
   @CaseTree @AddMultipleProducts
   Scenario: Adding multiple products to cart
     When I add multiple products to the cart
-      | product           |
-      | Samsung galaxy s6 |
-      | Nexus 6           |
-      | Sony vaio i5      |
-      | Iphone 6 32gb     |
+      | product           | quantity |
+      | Samsung galaxy s6 | 1        |
+      | Nexus 6           | 2        |
+      | Sony vaio i5      | 3        |
+      | Iphone 6 32gb     | 1        |
     Then I should see the products in the cart
 
   @CaseFour @RemoveCartProducts
