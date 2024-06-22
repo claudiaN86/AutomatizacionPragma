@@ -60,11 +60,12 @@ Feature: Add products to cart
   @CaseSix @PriceProducts
   Scenario: The total price of the cart must be the sum of the products.
     When I add multiple products to the cart
-      | product           |
-      | Samsung galaxy s6 |
-      | Nexus 6           |
-      | Sony vaio i5      |
-      | Iphone 6 32gb     |
+      | product           | quantity |
+      | Samsung galaxy s6 | 1        |
+      | Samsung galaxy s6 | 1        |
+      | Nexus 6           | 1        |
+      | Sony vaio i5      | 1        |
+      | Iphone 6 32gb     | 1        |
     Then I should see the sum of the total price of the products in the cart
 
 

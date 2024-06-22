@@ -4,6 +4,7 @@ import com.pragma.interactions.DeleteProductAction;
 import com.pragma.questions.ValidateNameProducts;
 import com.pragma.questions.ValidatePriceProduct;
 import com.pragma.questions.ValidateQuantity;
+import com.pragma.questions.ValidateTotalPriceProducts;
 import com.pragma.tasks.AddOneProductTask;
 import com.pragma.tasks.AddingMultipleProducts;
 import com.pragma.tasks.DeleteProductTask;
@@ -105,8 +106,9 @@ public class AddingProductCartStepDefinitions {
 
     @Then("I should see the sum of the total price of the products in the cart")
     public void iShouldSeeTheSumOfTheTotalPriceOfTheProductsInTheCart() {
-
+        List<Map<String, String>> products = theActorInTheSpotlight().recall("listTable");
+        theActorInTheSpotlight().should(
+                GivenWhenThen.seeThat(ValidateTotalPriceProducts.verify(products))
+        );
     }
-
-
 }
