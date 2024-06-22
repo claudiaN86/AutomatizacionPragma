@@ -35,7 +35,6 @@ public class AddingMultipleProducts implements Task {
         for (Map<String, String> product : products) {
             String productName = product.get("product");
             int quantity = Integer.parseInt(product.get("quantity"));
-            System.out.println("Mirar producto" + productName);
             actor.attemptsTo(
                     SelectProductAction.withTheData(productName),
                     AddProductAction.withTheData(quantity),

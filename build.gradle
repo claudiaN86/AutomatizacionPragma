@@ -40,12 +40,13 @@ dependencies {
 
 serenity {
     testRoot = "com.pragma"
-    requirementsDir = "src/test/resources/features"
+    requirementsBaseDir = "src/test/resources/features"
 }
 
 test {
     systemProperties System.getProperties()
     testLogging.showStandardStreams = true
+    jvmArgs += "--illegal-access=permit"
 }
 
 tasks.withType(JavaCompile) {
