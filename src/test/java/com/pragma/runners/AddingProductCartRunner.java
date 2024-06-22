@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features/adding_product_cart.feature",
         glue = "com.pragma",
-        tags = "@RemoveCartProducts",
+        tags = "@PriceProduct",
         plugin = {"pretty"},
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )

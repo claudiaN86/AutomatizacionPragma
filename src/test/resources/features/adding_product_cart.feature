@@ -50,11 +50,11 @@ Feature: Add products to cart
 
   @CaseFive @PriceProduct
   Scenario Outline: The price must be the respective price of the selected product.
-    When I add a "<product>" to the cart
-    Then I should see the respective price of the product in the cart
+    When I add a "<product>" to the cart "<quantity>"
+    Then I should see the respective "<price>" of the "<product>" in the cart
     Examples:
-      | product           |
-      | Samsung galaxy s6 |
+      | product           | quantity | price |
+      | Samsung galaxy s6 | 1        | 360   |
 
 
   @CaseSix @PriceProducts

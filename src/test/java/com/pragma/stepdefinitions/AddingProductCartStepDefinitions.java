@@ -2,6 +2,7 @@ package com.pragma.stepdefinitions;
 
 import com.pragma.interactions.DeleteProductAction;
 import com.pragma.questions.ValidateNameProducts;
+import com.pragma.questions.ValidatePriceProduct;
 import com.pragma.questions.ValidateQuantity;
 import com.pragma.tasks.AddOneProductTask;
 import com.pragma.tasks.AddingMultipleProducts;
@@ -29,7 +30,6 @@ public class AddingProductCartStepDefinitions {
 
     @When("I add a {string} to the cart {string}")
     public void iAddAToTheCart(String product, String quantity) {
-
         theActorInTheSpotlight().attemptsTo(
                 AddOneProductTask.withData(product, Integer.parseInt(quantity))
         );
@@ -95,8 +95,11 @@ public class AddingProductCartStepDefinitions {
         );
     }
 
-    @Then("I should see the respective price of the product in the cart")
-    public void iShouldSeeTheRespectivePriceOfTheProductInTheCart() {
+    @Then("I should see the respective {string} of the {string} in the cart")
+    public void iShouldSeeTheRespectivePriceOfTheProductInTheCart(String price, String product) {
+        theActorInTheSpotlight().should(
+                GivenWhenThen.seeThat(ValidatePriceProduct.verify(price, product))
+        );
 
     }
 
