@@ -1,6 +1,7 @@
 package com.pragma.stepdefinitions;
 
 import com.pragma.questions.ValidateNameProducts;
+import com.pragma.questions.ValidateQuantity;
 import com.pragma.tasks.AddOneProductTask;
 import com.pragma.userinterfaces.HomePage;
 import io.cucumber.java.en.Given;
@@ -22,17 +23,20 @@ public class AddingProductCartStepDefinitions {
                 Open.browserOn().the(HomePage.class)
         );
     }
-    @When("I add a {string} to the cart")
-    public void iAddAToTheCart(String product) {
-        theActorInTheSpotlight().attemptsTo(
-                AddOneProductTask.withData(product)
-        );
 
+    @When("I add a {string} to the cart {string}")
+    public void iAddAToTheCart(String product, String quantity) {
+
+        theActorInTheSpotlight().attemptsTo(
+                AddOneProductTask.withData(product, Integer.parseInt(quantity))
+        );
     }
 
-    @When("I add several times the same {string} to the cart")
-    public void iAddSeveralTimesTheSameToTheCart(String product) {
-
+    @When("I add {string} times the same {string} to the cart")
+    public void iAddSeveralTimesTheSameToTheCart(String quantity, String product) {
+        theActorInTheSpotlight().attemptsTo(
+                AddOneProductTask.withData(product, Integer.parseInt(quantity))
+        );
     }
 
     @When("I add multiple products to the cart")
@@ -51,14 +55,17 @@ public class AddingProductCartStepDefinitions {
 
     @Then("I should see the {string} in the cart")
     public void iShouldSeeTheProductInTheCart(String product) {
-    theActorInTheSpotlight().should(
-            GivenWhenThen.seeThat(ValidateNameProducts.verify(product))
-    );
+        theActorInTheSpotlight().should(
+                GivenWhenThen.seeThat(ValidateNameProducts.verify(product))
+        );
 
     }
-    @Then("the product should be displayed many times in the cart")
-    public void theProductShouldBeDisplayedManyTimesInTheCart() {
 
+    @Then("the {string} should be displayed {string} times in the cart")
+    public void theProductShouldBeDisplayedManyTimesInTheCart(String product, String quantity) {
+        theActorInTheSpotlight().should(
+                GivenWhenThen.seeThat(ValidateQuantity.verify(product, Integer.parseInt(quantity)))
+        );
     }
 
     @Then("I should see the products in the cart")
@@ -66,10 +73,12 @@ public class AddingProductCartStepDefinitions {
 
 
     }
+
     @Then("I should not see the products in the cart")
     public void iShouldNotSeeTheProductsInTheCart() {
 
     }
+
     @Then("I should see the respective price of the product in the cart")
     public void iShouldSeeTheRespectivePriceOfTheProductInTheCart() {
 
@@ -79,7 +88,6 @@ public class AddingProductCartStepDefinitions {
     public void iShouldSeeTheSumOfTheTotalPriceOfTheProductsInTheCart() {
 
     }
-
 
 
 }

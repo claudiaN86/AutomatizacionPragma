@@ -13,19 +13,19 @@ Feature: Add products to cart
 
   @CaseOne @AddProduct
   Scenario Outline: Adding a product to the cart with the Add  To Cart button
-    When I add a "<product>" to the cart
+    When I add a "<product>" to the cart "<quantity>"
     Then I should see the "<product>" in the cart
     Examples:
-      | product           |
-      | Samsung galaxy s6 |
+      | product           | quantity |
+      | Samsung galaxy s6 | 1        |
 
   @CaseTwo @AddSameProduct
   Scenario Outline: Adding many times the same product to the cart
-    When I add several times the same "<product>" to the cart
-    Then the product should be displayed many times in the cart
+    When I add "<quantity>" times the same "<product>" to the cart
+    Then the "<product>" should be displayed "<quantity>" times in the cart
     Examples:
-      | product           |
-      | Samsung galaxy s6 |
+      | product           | quantity |
+      | Samsung galaxy s6 | 4        |
 
   @CaseTree @AddMultipleProducts
   Scenario: Adding multiple products to cart
